@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #output {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/dist/marked.min.js"></script>
+    <script>
+        fetch('input.md')
+            .then(response => response.text())
+            .then(markdownText => {
+                const html = marked.parse(markdownText);
+                document.getElementById('output').innerHTML = html;
+            })
+            .catch(error => console.error('Error loading input.md:', error));
+    </script>
+</body>
+</html>
